@@ -11,7 +11,7 @@ import RxSwift
 
 class MainCoordinator: NavigationCoordinator {
     
-    private let disposeBag = DisposeBag()
+    private let bag = DisposeBag()
     
     override func start() {
         presentContent()
@@ -23,7 +23,9 @@ class MainCoordinator: NavigationCoordinator {
 private extension MainCoordinator {
     
     func presentContent() {
-        
+        let config = ItemListConfigurator.configure()
+        let vc = config.viewController
+        push(vc)
     }
     
 }

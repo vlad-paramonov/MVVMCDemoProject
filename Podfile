@@ -6,6 +6,8 @@ target 'MVVMCDemoProject' do
   pod 'IOSCoordinator'
   pod 'RxCocoa', '~> 6'
   pod 'RxSwift', '~> 6'
+  pod 'RXDataSourceConfigurator'
+  pod 'SnapKit'
 
   target 'MVVMCDemoProjectTests' do
     inherit! :search_paths
