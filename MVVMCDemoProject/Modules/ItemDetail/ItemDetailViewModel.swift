@@ -1,20 +1,20 @@
 //
-//  ItemListViewModel.swift
+//  ItemDetailViewModel.swift
 //  MVVMCDemoProject
 //
-//  Created by Vlad Paramonov on 26.01.2022.
+//  Created by Vlad Paramonov on 27.01.2022.
 //  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import RxSwift
 import RxCocoa
 
-protocol ItemListViewModelProtocol {
-    var bindings: ItemListViewModel.Bindings { get }
-    var commands: ItemListViewModel.Commands { get }
+protocol ItemDetailViewModelProtocol {
+    var bindings: ItemDetailViewModel.Bindings { get }
+    var commands: ItemDetailViewModel.Commands { get }
 }
 
-extension ItemListViewModel {
+extension ItemDetailViewModel {
     
     struct Dependencies { }
     
@@ -23,12 +23,10 @@ extension ItemListViewModel {
         let error = BehaviorRelay<Error?>(value: nil)
     }
     
-    struct Commands {
-        let data = BehaviorRelay<[Int]>(value: [0,1,2,3,4,5,6,7,8,9,10])
-    }
+    struct Commands { }
 }
 
-class ItemListViewModel: ItemListModuleProtocol, ItemListViewModelProtocol {
+class ItemDetailViewModel: ItemDetailModuleProtocol, ItemDetailViewModelProtocol {
     
     let moduleInput: ModuleInput
     let moduleOutput = ModuleOutput()
@@ -52,7 +50,7 @@ class ItemListViewModel: ItemListModuleProtocol, ItemListViewModelProtocol {
 
 }
 
-private extension ItemListViewModel {
+private extension ItemDetailViewModel {
     
     func configure(moduleInput: ModuleInput) {
         

@@ -11,6 +11,8 @@ import RxSwift
 
 class MainCoordinator: NavigationCoordinator {
     
+    struct Output {}
+    
     private let bag = DisposeBag()
     
     override func start() {
@@ -24,6 +26,13 @@ private extension MainCoordinator {
     
     func presentContent() {
         let config = ItemListConfigurator.configure()
+        let vc = config.viewController
+        // subscribe tap on cell to opening presentDetail() ???
+        set([vc])
+    }
+    
+    func presentDetail() {
+        let config = ItemDetailConfigurator.configure()
         let vc = config.viewController
         push(vc)
     }
