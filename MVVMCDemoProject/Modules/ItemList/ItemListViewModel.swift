@@ -27,7 +27,7 @@ extension ItemListViewModel {
     struct Bindings {
         let networkActivity = BehaviorRelay<Bool>(value: false)
         let error = BehaviorRelay<Error?>(value: nil)
-        let cellModels = BehaviorRelay<[BaseCellModel]>(value: [])
+        let cellModels = BehaviorRelay<[BaseCellModel]?>(value: nil)
     }
     
     struct Commands {
@@ -46,7 +46,8 @@ class ItemListViewModel: ItemListModuleProtocol, ItemListViewModelProtocol {
     private let dp: Dependencies
     private let bag = DisposeBag()
     
-    private let items = BehaviorRelay<[FruitModel]>(value: [])
+    private let items = BehaviorRelay<[FruitModel]?>(value: nil)
+    
     private let itemsCells = PublishRelay<[BaseCellModel]>()
     
     init(dependencies: Dependencies, moduleInput: ModuleInput) {
@@ -74,15 +75,10 @@ private extension ItemListViewModel {
     }
     
     func configure() {
-        items.subscribe {
-            print($0.element)
-        }.disposed(by: bag)
+        items.filterNil().bind(to: parseItems()).disposed(by: bag)
         
-        itemsCells.subscribe {
-            print($0.element)
-        }
-
-        items.bind(to: parseItems()).disposed(by: bag)
+        itemsCells.bind(to: bindings.cellModels).disposed(by: bag)
+        
         fetchItems()
     }
 

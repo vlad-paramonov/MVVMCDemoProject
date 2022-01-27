@@ -25,7 +25,9 @@ class ItemListView: UIView {
     }
     
     private func configureView() {
+        tableView.backgroundView?.backgroundColor = .clear
         tableView.backgroundColor = .systemPink
+        tableView.separatorStyle = .none
     }
     
     private func addSubviews() {

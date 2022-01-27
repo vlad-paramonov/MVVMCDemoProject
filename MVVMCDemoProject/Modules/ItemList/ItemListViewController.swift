@@ -40,12 +40,14 @@ class ItemListViewController: UIViewController {
     // MARK: - Private
     
     private func configureUI() {
-        
+        title = "Nice"
+        setTransparentBackground()
     }
     
     private func configure(bindings: ItemListViewModel.Bindings) {
         let dataSource = dsConfigurator.tableDataSource()
         bindings.cellModels
+            .filterNil()
             .map({ $0 as [BaseCellModel] })
             .wrapToSection()
             .bind(to: customView.tableView.rx.items(dataSource: dataSource))
@@ -54,6 +56,16 @@ class ItemListViewController: UIViewController {
     
     private func configure(commands: ItemListViewModel.Commands) {
         // tap on cell
+    }
+    
+}
+
+private extension ItemListViewController {
+    
+    func setTransparentBackground() {
+        var bgConfig = UIBackgroundConfiguration.listPlainCell()
+        bgConfig.backgroundColor = UIColor.clear
+        UITableViewCell.appearance().backgroundConfiguration = bgConfig
     }
     
 }

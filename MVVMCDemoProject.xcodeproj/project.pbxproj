@@ -24,6 +24,7 @@
 		F5DD289927A288E400419F86 /* ItemDetail+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289427A288E400419F86 /* ItemDetail+Infrastructure.swift */; };
 		F5DD289C27A2C70800419F86 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289B27A2C70800419F86 /* ItemView.swift */; };
 		F5DD289E27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289D27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift */; };
+		F5DD28A127A2E57900419F86 /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD28A027A2E57900419F86 /* Observable+Operators.swift */; };
 		F5E4C9DA27A15A6D005CFB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C9D927A15A6D005CFB6D /* AppDelegate.swift */; };
 		F5E4C9E327A15A70005CFB6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5E4C9E227A15A70005CFB6D /* Assets.xcassets */; };
 		F5E4C9E627A15A70005CFB6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E4C9E427A15A70005CFB6D /* LaunchScreen.storyboard */; };
@@ -72,6 +73,7 @@
 		F5DD289427A288E400419F86 /* ItemDetail+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemDetail+Infrastructure.swift"; sourceTree = "<group>"; };
 		F5DD289B27A2C70800419F86 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		F5DD289D27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemView+RXDSContainerConfigurable.swift"; sourceTree = "<group>"; };
+		F5DD28A027A2E57900419F86 /* Observable+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
 		F5E4C9D627A15A6D005CFB6D /* MVVMCDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMCDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5E4C9D927A15A6D005CFB6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5E4C9E227A15A70005CFB6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -188,6 +190,14 @@
 			path = ItemView;
 			sourceTree = "<group>";
 		};
+		F5DD289F27A2E56D00419F86 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F5DD28A027A2E57900419F86 /* Observable+Operators.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F5E4C9CD27A15A6D005CFB6D = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				F5E4C9D927A15A6D005CFB6D /* AppDelegate.swift */,
+				F5DD289F27A2E56D00419F86 /* Extensions */,
 				F5DD287827A16D3600419F86 /* Coordinators */,
 				F5DD287D27A1721400419F86 /* Modules */,
 				F5E4C9E227A15A70005CFB6D /* Assets.xcassets */,
@@ -478,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5DD28A127A2E57900419F86 /* Observable+Operators.swift in Sources */,
 				F5DD289527A288E400419F86 /* ItemDetailViewController.swift in Sources */,
 				F5DD288627A1725F00419F86 /* ItemListConfigurator.swift in Sources */,
 				F5DD288427A1725F00419F86 /* ItemListView.swift in Sources */,
