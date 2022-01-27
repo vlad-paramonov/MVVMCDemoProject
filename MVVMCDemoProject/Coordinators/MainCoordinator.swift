@@ -27,7 +27,6 @@ private extension MainCoordinator {
     func presentContent() {
         let config = ItemListConfigurator.configure()
         let vc = config.viewController
-        // subscribe tap on cell to opening presentDetail() ???
         set([vc])
     }
     

@@ -8,6 +8,12 @@
 
 import RxSwift
 import RxCocoa
+import RXDataSourceConfigurator
+
+struct FruitModel {
+    let id: String
+    let name: String
+}
 
 protocol ItemListViewModelProtocol {
     var bindings: ItemListViewModel.Bindings { get }
@@ -21,10 +27,11 @@ extension ItemListViewModel {
     struct Bindings {
         let networkActivity = BehaviorRelay<Bool>(value: false)
         let error = BehaviorRelay<Error?>(value: nil)
+        let cellModels = BehaviorRelay<[BaseCellModel]>(value: [])
     }
     
     struct Commands {
-        let data = BehaviorRelay<[Int]>(value: [0,1,2,3,4,5,6,7,8,9,10])
+        
     }
 }
 
@@ -39,11 +46,15 @@ class ItemListViewModel: ItemListModuleProtocol, ItemListViewModelProtocol {
     private let dp: Dependencies
     private let bag = DisposeBag()
     
+    private let items = BehaviorRelay<[FruitModel]>(value: [])
+    private let itemsCells = PublishRelay<[BaseCellModel]>()
+    
     init(dependencies: Dependencies, moduleInput: ModuleInput) {
         self.dp = dependencies
         self.moduleInput = moduleInput
         configure(moduleInput: moduleInput)
         configure(commands: commands)
+        configure()
     }
 
     deinit {
@@ -59,7 +70,47 @@ private extension ItemListViewModel {
     }
     
     func configure(commands: Commands) {
+        // vc actions bind to functions here in vm
+    }
+    
+    func configure() {
+        items.subscribe {
+            print($0.element)
+        }.disposed(by: bag)
         
+        itemsCells.subscribe {
+            print($0.element)
+        }
+
+        items.bind(to: parseItems()).disposed(by: bag)
+        fetchItems()
     }
 
+}
+
+private extension ItemListViewModel {
+    
+    func fetchItems() {
+        // simulating data fetching saved using custom model
+        // the model that will later be translated to a different one to fill the cells
+        let models = ["🍏", "🍌", "🥑", "🍍", "🍊"].map { fruit -> FruitModel in
+                .init(id: UUID().uuidString, name: fruit)
+        }
+        // using accept method to insert data into BehaviorRelay
+        self.items.accept(models)
+    }
+    
+    func parseItems() -> Binder<[FruitModel]> {
+        // initializing binder with self as target
+        // weak ref is handled in Binder
+        return .init(self) { target, items in
+            let cellModels = items.enumerated().map { index, item -> BaseCellModel in
+                let itemVM = ItemView.Model(id: item.id, name: item.name)  // has to be DiffIdentifiable
+                let cellVM = ContainerCellModel<ItemView>(id: item.id, model: itemVM)
+                return cellVM
+            }
+            target.itemsCells.accept(cellModels)
+        }
+    }
+    
 }

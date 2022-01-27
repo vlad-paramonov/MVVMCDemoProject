@@ -17,12 +17,13 @@
 		F5DD288527A1725F00419F86 /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD288027A1725F00419F86 /* ItemListViewModel.swift */; };
 		F5DD288627A1725F00419F86 /* ItemListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD288127A1725F00419F86 /* ItemListConfigurator.swift */; };
 		F5DD288727A1725F00419F86 /* ItemList+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD288227A1725F00419F86 /* ItemList+Infrastructure.swift */; };
-		F5DD288F27A1DBAC00419F86 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD288E27A1DBAC00419F86 /* Cell.swift */; };
 		F5DD289527A288E400419F86 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289027A288E400419F86 /* ItemDetailViewController.swift */; };
 		F5DD289627A288E400419F86 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289127A288E400419F86 /* ItemDetailView.swift */; };
 		F5DD289727A288E400419F86 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289227A288E400419F86 /* ItemDetailViewModel.swift */; };
 		F5DD289827A288E400419F86 /* ItemDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289327A288E400419F86 /* ItemDetailConfigurator.swift */; };
 		F5DD289927A288E400419F86 /* ItemDetail+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289427A288E400419F86 /* ItemDetail+Infrastructure.swift */; };
+		F5DD289C27A2C70800419F86 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289B27A2C70800419F86 /* ItemView.swift */; };
+		F5DD289E27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DD289D27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift */; };
 		F5E4C9DA27A15A6D005CFB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C9D927A15A6D005CFB6D /* AppDelegate.swift */; };
 		F5E4C9E327A15A70005CFB6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5E4C9E227A15A70005CFB6D /* Assets.xcassets */; };
 		F5E4C9E627A15A70005CFB6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E4C9E427A15A70005CFB6D /* LaunchScreen.storyboard */; };
@@ -64,12 +65,13 @@
 		F5DD288027A1725F00419F86 /* ItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
 		F5DD288127A1725F00419F86 /* ItemListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListConfigurator.swift; sourceTree = "<group>"; };
 		F5DD288227A1725F00419F86 /* ItemList+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemList+Infrastructure.swift"; sourceTree = "<group>"; };
-		F5DD288E27A1DBAC00419F86 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		F5DD289027A288E400419F86 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		F5DD289127A288E400419F86 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		F5DD289227A288E400419F86 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		F5DD289327A288E400419F86 /* ItemDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailConfigurator.swift; sourceTree = "<group>"; };
 		F5DD289427A288E400419F86 /* ItemDetail+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemDetail+Infrastructure.swift"; sourceTree = "<group>"; };
+		F5DD289B27A2C70800419F86 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		F5DD289D27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemView+RXDSContainerConfigurable.swift"; sourceTree = "<group>"; };
 		F5E4C9D627A15A6D005CFB6D /* MVVMCDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMCDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5E4C9D927A15A6D005CFB6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5E4C9E227A15A70005CFB6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		F5DD288927A1758400419F86 /* ItemList */ = {
 			isa = PBXGroup;
 			children = (
+				F5DD289A27A2C6CE00419F86 /* ItemView */,
 				F5DD287E27A1725F00419F86 /* ItemListViewController.swift */,
 				F5DD287F27A1725F00419F86 /* ItemListView.swift */,
 				F5DD288027A1725F00419F86 /* ItemListViewModel.swift */,
@@ -176,12 +179,13 @@
 			path = ItemList;
 			sourceTree = "<group>";
 		};
-		F5DD288D27A1DB9300419F86 /* UI */ = {
+		F5DD289A27A2C6CE00419F86 /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
-				F5DD288E27A1DBAC00419F86 /* Cell.swift */,
+				F5DD289B27A2C70800419F86 /* ItemView.swift */,
+				F5DD289D27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift */,
 			);
-			path = UI;
+			path = ItemView;
 			sourceTree = "<group>";
 		};
 		F5E4C9CD27A15A6D005CFB6D = {
@@ -213,7 +217,6 @@
 				F5DD287827A16D3600419F86 /* Coordinators */,
 				F5DD287D27A1721400419F86 /* Modules */,
 				F5E4C9E227A15A70005CFB6D /* Assets.xcassets */,
-				F5DD288D27A1DB9300419F86 /* UI */,
 				F5E4C9E427A15A70005CFB6D /* LaunchScreen.storyboard */,
 				F5E4C9E727A15A70005CFB6D /* Info.plist */,
 			);
@@ -483,10 +486,11 @@
 				F5DD287A27A16D8200419F86 /* AppWindowCoordinator.swift in Sources */,
 				F5DD289927A288E400419F86 /* ItemDetail+Infrastructure.swift in Sources */,
 				F5DD288327A1725F00419F86 /* ItemListViewController.swift in Sources */,
-				F5DD288F27A1DBAC00419F86 /* Cell.swift in Sources */,
 				F5DD287C27A16E8400419F86 /* MainCoordinator.swift in Sources */,
 				F5E4C9DA27A15A6D005CFB6D /* AppDelegate.swift in Sources */,
 				F5DD289727A288E400419F86 /* ItemDetailViewModel.swift in Sources */,
+				F5DD289C27A2C70800419F86 /* ItemView.swift in Sources */,
+				F5DD289E27A2D10400419F86 /* ItemView+RXDSContainerConfigurable.swift in Sources */,
 				F5DD288727A1725F00419F86 /* ItemList+Infrastructure.swift in Sources */,
 				F5DD289827A288E400419F86 /* ItemDetailConfigurator.swift in Sources */,
 			);

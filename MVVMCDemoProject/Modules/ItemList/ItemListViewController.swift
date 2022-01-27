@@ -17,6 +17,8 @@ class ItemListViewController: UIViewController {
     var viewModel: ItemListViewModelProtocol!
     private let bag = DisposeBag()
     private lazy var customView = ItemListView(frame: .zero)
+    
+    let dsConfigurator = RXDataSourceConfigurator()
 
     // MARK: - View lifecycle
     
@@ -38,21 +40,20 @@ class ItemListViewController: UIViewController {
     // MARK: - Private
     
     private func configureUI() {
-        customView.tableView.register(Cell.self, forCellReuseIdentifier: Cell.reuseIdentifier)
+        
     }
     
     private func configure(bindings: ItemListViewModel.Bindings) {
-        viewModel.commands.data.bind(to: customView.tableView.rx.items(
-                cellIdentifier: Cell.reuseIdentifier,
-                cellType: Cell.self))
-                { _, model, cell in
-                    cell.textLabel?.text = "\(model)"
-                }
-                .disposed(by: bag)
+        let dataSource = dsConfigurator.tableDataSource()
+        bindings.cellModels
+            .map({ $0 as [BaseCellModel] })
+            .wrapToSection()
+            .bind(to: customView.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
     }
     
     private func configure(commands: ItemListViewModel.Commands) {
-        
+        // tap on cell
     }
     
 }
