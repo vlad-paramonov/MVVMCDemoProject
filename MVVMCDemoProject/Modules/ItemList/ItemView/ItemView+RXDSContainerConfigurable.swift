@@ -24,7 +24,7 @@ extension ItemView: RXDSContainerConfigurable {
         guard let model = model else {
             return
         }
-        output.tap.debug("configure").map { Action(id: model.id) }.bind(to: actionHandler.action).disposed(by: reuseBag)
+        output.tap.map { Action(id: model.id) }.bind(to: actionHandler.action).disposed(by: reuseBag)
     }
     
     func contentInsets() -> UIEdgeInsets? {

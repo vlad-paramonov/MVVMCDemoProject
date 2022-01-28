@@ -56,7 +56,6 @@ class ItemListViewController: UIViewController {
     
     private func configure(commands: ItemListViewModel.Commands) {
         dsConfigurator.handle(action: ItemView.Action.self)
-            .debug("tap handler")
             .map{ $0.id }
             .bind(to: commands.select)
             .disposed(by: bag)

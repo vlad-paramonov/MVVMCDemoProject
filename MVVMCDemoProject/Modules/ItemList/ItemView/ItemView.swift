@@ -77,7 +77,7 @@ private extension ItemView {
     }
     
     func configureRx() {
-        button.rx.tap.debug("rx.tap").bind(to: output.tap).disposed(by: bag)
+        button.rx.tap.bind(to: output.tap).disposed(by: bag)
     }
     
     func updateUI() {
