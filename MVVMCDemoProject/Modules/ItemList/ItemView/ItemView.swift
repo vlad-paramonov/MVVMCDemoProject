@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import RXDataSourceConfigurator
 import SnapKit
 
@@ -22,7 +24,15 @@ class ItemView: UIView {
         }
     }
     
+    struct Output {
+        let tap = PublishRelay<Void>()
+    }
+    
+    let output = Output()
+    
+    private let bag = DisposeBag()
     private let label = UILabel()
+    private let button = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,20 +59,26 @@ private extension ItemView {
         layer.cornerRadius = 20
         label.font = UIFont.systemFont(ofSize: 50)
         label.textAlignment = .center
+        button.alpha = 0
     }
     
     func addSubviews() {
         addSubview(label)
+        addSubview(button)
     }
     
     func setupConstraints() {
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(20)
         }
+        
+        button.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func configureRx() {
-        
+        button.rx.tap.debug("rx.tap").bind(to: output.tap).disposed(by: bag)
     }
     
     func updateUI() {

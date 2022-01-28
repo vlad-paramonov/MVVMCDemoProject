@@ -26,11 +26,14 @@ private extension MainCoordinator {
     
     func presentContent() {
         let config = ItemListConfigurator.configure()
-        let vc = config.viewController
+        let vc = config.viewController as! ItemListViewController
+        vc.output.action.subscribe(onNext: { [weak self] model in
+            self?.presentDetail(model)
+        }).disposed(by: bag)
         set([vc])
     }
     
-    func presentDetail() {
+    func presentDetail(_ model: FruitModel) {
         let config = ItemDetailConfigurator.configure()
         let vc = config.viewController
         push(vc)

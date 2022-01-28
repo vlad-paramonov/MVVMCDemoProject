@@ -11,6 +11,7 @@ import RxCocoa
 import RXDataSourceConfigurator
 
 struct FruitModel {
+    typealias Id = String
     let id: String
     let name: String
 }
@@ -28,10 +29,11 @@ extension ItemListViewModel {
         let networkActivity = BehaviorRelay<Bool>(value: false)
         let error = BehaviorRelay<Error?>(value: nil)
         let cellModels = BehaviorRelay<[BaseCellModel]?>(value: nil)
+        let fruit = BehaviorRelay<FruitModel?>(value: nil)
     }
     
     struct Commands {
-        
+        let find = PublishRelay<FruitModel.Id>()
     }
 }
 
@@ -71,12 +73,15 @@ private extension ItemListViewModel {
     }
     
     func configure(commands: Commands) {
-        // vc actions bind to functions here in vm
+        commands.find.bind(to: fruitModelForId()).disposed(by: bag)
     }
     
     func configure() {
-        items.filterNil().bind(to: parseItems()).disposed(by: bag)
+//        bindings.fruit.subscribe { fruit in
+//            print("fruit:", fruit)
+//        }.disposed(by: bag)
         
+        items.filterNil().bind(to: parseItems()).disposed(by: bag)
         itemsCells.bind(to: bindings.cellModels).disposed(by: bag)
         
         fetchItems()
@@ -106,6 +111,18 @@ private extension ItemListViewModel {
                 return cellVM
             }
             target.itemsCells.accept(cellModels)
+        }
+    }
+    
+    func fruitModelForId() -> Binder<FruitModel.Id> {
+        return .init(self) { target, id in
+            guard let items = target.items.value,
+                  let item = items.first(where: { $0.id == id })
+            else {
+                print("oops")
+                return
+            }
+            target.bindings.fruit.accept(item)
         }
     }
     

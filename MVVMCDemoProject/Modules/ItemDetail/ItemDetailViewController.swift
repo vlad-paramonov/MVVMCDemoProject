@@ -15,10 +15,7 @@ class ItemDetailViewController: UIViewController {
     // MARK: - Infrastructure
     var viewModel: ItemDetailViewModelProtocol!
     private let bag = DisposeBag()
-    private lazy var customView: ItemDetailView = {
-        let customView = ItemDetailView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
-        return customView
-    }()
+    private lazy var customView = ItemDetailView(frame: .zero)
 
     // MARK: - View lifecycle
     

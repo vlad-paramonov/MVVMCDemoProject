@@ -12,6 +12,10 @@ import RxCocoa
 import RXDataSourceConfigurator
 
 class ItemListViewController: UIViewController {
+
+    struct Output {
+        let action = PublishRelay<FruitModel>()
+    }
     
     // MARK: - Infrastructure
     var viewModel: ItemListViewModelProtocol!
@@ -20,6 +24,8 @@ class ItemListViewController: UIViewController {
     
     let dsConfigurator = RXDataSourceConfigurator()
 
+    let output = Output()
+    
     // MARK: - View lifecycle
     
     override func loadView() {
@@ -52,10 +58,19 @@ class ItemListViewController: UIViewController {
             .wrapToSection()
             .bind(to: customView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+        
+        output.action.bind(to: bindings.fruit).disposed(by: bag)
     }
     
     private func configure(commands: ItemListViewModel.Commands) {
-        // tap on cell
+        dsConfigurator.handle(action: ItemView.Action.self)
+            .debug("tap handler")
+            .map{ $0.id }
+//            .do(onSubscribed: {
+//                print("subscribed")
+//            })
+            .bind(to: commands.find)
+            .disposed(by: bag)
     }
     
 }
