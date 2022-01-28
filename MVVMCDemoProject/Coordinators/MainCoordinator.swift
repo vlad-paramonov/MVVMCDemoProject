@@ -25,12 +25,12 @@ class MainCoordinator: NavigationCoordinator {
 private extension MainCoordinator {
     
     func presentContent() {
-        let config = ItemListConfigurator.configure()
-        let vc = config.viewController as! ItemListViewController
-        vc.output.action.subscribe(onNext: { [weak self] model in
+        let module = ItemListConfigurator.configure()
+        // coordinator should communicate with module via viewModel I/O
+        module.viewModel.moduleOutput.item.subscribe(onNext: { [weak self] model in
             self?.presentDetail(model)
         }).disposed(by: bag)
-        set([vc])
+        set([module.viewController])
     }
     
     func presentDetail(_ model: FruitModel) {

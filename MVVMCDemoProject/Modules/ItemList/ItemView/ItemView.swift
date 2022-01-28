@@ -59,7 +59,6 @@ private extension ItemView {
         layer.cornerRadius = 20
         label.font = UIFont.systemFont(ofSize: 50)
         label.textAlignment = .center
-        button.alpha = 0
     }
     
     func addSubviews() {
@@ -93,7 +92,7 @@ private extension ItemView {
 extension ItemView.Model: DiffIdentifiable {
     
     var diffIdentifier: String {
-        "\(id)"
+        "\(id)\(name)"
     }
     
 }

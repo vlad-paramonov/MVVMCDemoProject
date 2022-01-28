@@ -33,7 +33,7 @@ extension ItemListViewModel {
     }
     
     struct Commands {
-        let find = PublishRelay<FruitModel.Id>()
+        let select = PublishRelay<FruitModel.Id>()
     }
 }
 
@@ -49,8 +49,6 @@ class ItemListViewModel: ItemListModuleProtocol, ItemListViewModelProtocol {
     private let bag = DisposeBag()
     
     private let items = BehaviorRelay<[FruitModel]?>(value: nil)
-    
-    private let itemsCells = PublishRelay<[BaseCellModel]>()
     
     init(dependencies: Dependencies, moduleInput: ModuleInput) {
         self.dp = dependencies
@@ -73,17 +71,13 @@ private extension ItemListViewModel {
     }
     
     func configure(commands: Commands) {
-        commands.find.bind(to: fruitModelForId()).disposed(by: bag)
+        commands.select.subscribe(onNext: { [weak self] id in
+            self?.selectFruit(id: id)
+        }).disposed(by: bag)
     }
     
     func configure() {
-//        bindings.fruit.subscribe { fruit in
-//            print("fruit:", fruit)
-//        }.disposed(by: bag)
-        
         items.filterNil().bind(to: parseItems()).disposed(by: bag)
-        itemsCells.bind(to: bindings.cellModels).disposed(by: bag)
-        
         fetchItems()
     }
 
@@ -110,20 +104,17 @@ private extension ItemListViewModel {
                 let cellVM = ContainerCellModel<ItemView>(id: item.id, model: itemVM)
                 return cellVM
             }
-            target.itemsCells.accept(cellModels)
+            target.bindings.cellModels.accept(cellModels)
         }
     }
     
-    func fruitModelForId() -> Binder<FruitModel.Id> {
-        return .init(self) { target, id in
-            guard let items = target.items.value,
-                  let item = items.first(where: { $0.id == id })
-            else {
-                print("oops")
-                return
-            }
-            target.bindings.fruit.accept(item)
+    func selectFruit(id: FruitModel.Id) {
+        guard let items = items.value,
+              let item = items.first(where: { $0.id == id })
+        else {
+            return
         }
+        moduleOutput.item.accept(item)
     }
     
 }

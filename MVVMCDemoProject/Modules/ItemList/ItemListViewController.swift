@@ -13,18 +13,12 @@ import RXDataSourceConfigurator
 
 class ItemListViewController: UIViewController {
 
-    struct Output {
-        let action = PublishRelay<FruitModel>()
-    }
-    
     // MARK: - Infrastructure
     var viewModel: ItemListViewModelProtocol!
     private let bag = DisposeBag()
     private lazy var customView = ItemListView(frame: .zero)
     
     let dsConfigurator = RXDataSourceConfigurator()
-
-    let output = Output()
     
     // MARK: - View lifecycle
     
@@ -58,18 +52,13 @@ class ItemListViewController: UIViewController {
             .wrapToSection()
             .bind(to: customView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
-        
-        output.action.bind(to: bindings.fruit).disposed(by: bag)
     }
     
     private func configure(commands: ItemListViewModel.Commands) {
         dsConfigurator.handle(action: ItemView.Action.self)
             .debug("tap handler")
             .map{ $0.id }
-//            .do(onSubscribed: {
-//                print("subscribed")
-//            })
-            .bind(to: commands.find)
+            .bind(to: commands.select)
             .disposed(by: bag)
     }
     

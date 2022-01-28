@@ -18,6 +18,8 @@ extension ItemListViewModel {
     
     struct ModuleInput { }
     
-    struct ModuleOutput { }
+    struct ModuleOutput {
+        let item = PublishRelay<FruitModel>()
+    }
 
 }
