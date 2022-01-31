@@ -34,9 +34,9 @@ private extension MainCoordinator {
     }
     
     func presentDetail(_ model: FruitModel) {
-        let config = ItemDetailConfigurator.configure()
-        let vc = config.viewController
-        push(vc)
+        let module = ItemDetailConfigurator.configure()
+        module.viewModel.moduleInput.fruit.accept(model)
+        push(module.viewController)
     }
     
 }

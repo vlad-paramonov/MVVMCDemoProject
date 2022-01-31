@@ -16,7 +16,9 @@ protocol ItemDetailModuleProtocol {
 
 extension ItemDetailViewModel {
     
-    struct ModuleInput { }
+    struct ModuleInput {
+        var fruit = PublishRelay<FruitModel>()
+    }
     
     struct ModuleOutput { }
 

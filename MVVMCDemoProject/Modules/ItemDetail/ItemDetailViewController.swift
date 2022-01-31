@@ -41,7 +41,7 @@ class ItemDetailViewController: UIViewController {
     }
     
     private func configure(bindings: ItemDetailViewModel.Bindings) {
-              
+        bindings.fruitEmoji.bind(to: customView.label.rx.text).disposed(by: bag)
     }
     
     private func configure(commands: ItemDetailViewModel.Commands) {

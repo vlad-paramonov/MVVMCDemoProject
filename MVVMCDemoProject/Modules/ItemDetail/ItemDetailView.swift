@@ -11,7 +11,7 @@ import SnapKit
 
 class ItemDetailView: UIView {
     
-    private let label = UILabel()
+    let label = UILabel()
     
     override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
@@ -25,8 +25,9 @@ class ItemDetailView: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .white
-        label.font = UIFont.systemFont(ofSize: 28)
+        backgroundColor = .systemOrange
+        label.font = UIFont.systemFont(ofSize: 70)
+        label.textAlignment = .center
     }
     
     private func addSubviews() {
@@ -35,6 +36,7 @@ class ItemDetailView: UIView {
     
     private func makeConstraints() {
         label.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
             make.center.equalToSuperview()
         }
     }
